@@ -1,3 +1,5 @@
+#include <interrupts.h>;
+
 int PWMPin = 12;
 int RPMPin = 14;
 
@@ -85,7 +87,7 @@ void loop()
     {
       pushTime(); 
 
-      flost rpm = calcRPM();
+      float rpm = calcRPM();
       tAvail = false;
       //Do something with the new rpm val. 
       //Depending on the frequency of the interrupts,
