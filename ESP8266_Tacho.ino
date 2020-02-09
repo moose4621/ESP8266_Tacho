@@ -4,7 +4,7 @@ int RPMPin = 14;
 volatile uint32_t dTimeUS; //measured delta time between interrupts
 volatile uint32_t lTimeUS; //last absolute micros
 volatile bool tAvail; //signals a new measured delta time is available 
-volatile std::vector<uint32_t> tArray;
+std::vector<uint32_t> tArray;
 constexpr size_t aSize = 5;
 
 void setup()
@@ -39,7 +39,8 @@ void pushTime()
 
   uint32_t dTimeSafe;
   {
-      esp8266::InterruptLock lock;
+      using namespace esp8266;
+      InterruptLock lock;
       dTimeSafe = dTimeUS;
   } 
 
@@ -84,7 +85,7 @@ void loop()
     {
       pushTime(); 
 
-      rpm = calcRPM();
+      flost rpm = calcRPM();
       tAvail = false;
       //Do something with the new rpm val. 
       //Depending on the frequency of the interrupts,
