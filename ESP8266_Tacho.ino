@@ -43,7 +43,7 @@ void pushTime()
       dTimeSafe = dTimeUS;
   } 
 
-  if(tArray.size() == aSise) 
+  if(tArray.size() == aSize) 
   {
       //arr is full, shift elements down, add new time at the end 
       //n Sample Moving Average To Smooth Out The Data
