@@ -1,0 +1,54 @@
+Arduino: 1.8.10 (Linux), Board: "LOLIN(WEMOS) D1 R2 & mini, 80 MHz, Flash, Legacy (new can return nullptr), All SSL ciphers (most compatible), 4MB (FS:3MB OTA:~512KB), v2 Lower Memory, Disabled, None, Only Sketch, 921600"
+
+/home/chris/Arduino/ESP8266_Tacho/ESP8266_Tacho.ino: In function 'void setup()':
+ESP8266_Tacho:23:23: error: passing 'volatile std::vector<unsigned int>' as 'this' argument of 'void std::vector<_Tp, _Alloc>::reserve(std::vector<_Tp, _Alloc>::size_type) [with _Tp = unsigned int; _Alloc = std::allocator<unsigned int>; std::vector<_Tp, _Alloc>::size_type = unsigned int]' discards qualifiers [-fpermissive]
+   tArray.reserve(aSize);
+                       ^
+/home/chris/Arduino/ESP8266_Tacho/ESP8266_Tacho.ino: In function 'void pushTime()':
+ESP8266_Tacho:42:7: error: 'InterruptLock' is not a member of 'esp8266'
+       esp8266::InterruptLock lock;
+       ^
+ESP8266_Tacho:42:30: error: expected ';' before 'lock'
+       esp8266::InterruptLock lock;
+                              ^
+ESP8266_Tacho:46:18: error: passing 'volatile std::vector<unsigned int>' as 'this' argument of 'std::vector<_Tp, _Alloc>::size_type std::vector<_Tp, _Alloc>::size() const [with _Tp = unsigned int; _Alloc = std::allocator<unsigned int>; std::vector<_Tp, _Alloc>::size_type = unsigned int]' discards qualifiers [-fpermissive]
+   if(tArray.size() == aSise) 
+                  ^
+ESP8266_Tacho:46:23: error: 'aSise' was not declared in this scope
+   if(tArray.size() == aSise) 
+                       ^
+ESP8266_Tacho:51:30: error: passing 'volatile std::vector<unsigned int>' as 'this' argument of 'std::vector<_Tp, _Alloc>::size_type std::vector<_Tp, _Alloc>::size() const [with _Tp = unsigned int; _Alloc = std::allocator<unsigned int>; std::vector<_Tp, _Alloc>::size_type = unsigned int]' discards qualifiers [-fpermissive]
+       for( ; i < tArray.size() - 1; ++i) 
+                              ^
+ESP8266_Tacho:52:18: error: passing 'volatile std::vector<unsigned int>' as 'this' argument of 'std::vector<_Tp, _Alloc>::reference std::vector<_Tp, _Alloc>::operator[](std::vector<_Tp, _Alloc>::size_type) [with _Tp = unsigned int; _Alloc = std::allocator<unsigned int>; std::vector<_Tp, _Alloc>::reference = unsigned int&; std::vector<_Tp, _Alloc>::size_type = unsigned int]' discards qualifiers [-fpermissive]
+          tArray[i] = tArray[i + 1];
+                  ^
+ESP8266_Tacho:52:34: error: passing 'volatile std::vector<unsigned int>' as 'this' argument of 'std::vector<_Tp, _Alloc>::reference std::vector<_Tp, _Alloc>::operator[](std::vector<_Tp, _Alloc>::size_type) [with _Tp = unsigned int; _Alloc = std::allocator<unsigned int>; std::vector<_Tp, _Alloc>::reference = unsigned int&; std::vector<_Tp, _Alloc>::size_type = unsigned int]' discards qualifiers [-fpermissive]
+          tArray[i] = tArray[i + 1];
+                                  ^
+ESP8266_Tacho:55:15: error: passing 'volatile std::vector<unsigned int>' as 'this' argument of 'std::vector<_Tp, _Alloc>::reference std::vector<_Tp, _Alloc>::operator[](std::vector<_Tp, _Alloc>::size_type) [with _Tp = unsigned int; _Alloc = std::allocator<unsigned int>; std::vector<_Tp, _Alloc>::reference = unsigned int&; std::vector<_Tp, _Alloc>::size_type = unsigned int]' discards qualifiers [-fpermissive]
+       tArray[i] = dTimeSafe;
+               ^
+ESP8266_Tacho:60:33: error: passing 'volatile std::vector<unsigned int>' as 'this' argument of 'void std::vector<_Tp, _Alloc>::push_back(const value_type&) [with _Tp = unsigned int; _Alloc = std::allocator<unsigned int>; std::vector<_Tp, _Alloc>::value_type = unsigned int]' discards qualifiers [-fpermissive]
+       tArray.push_back(dTimeSafe);
+                                 ^
+/home/chris/Arduino/ESP8266_Tacho/ESP8266_Tacho.ino: In function 'uint32_t tArraySum()':
+ESP8266_Tacho:67:24: error: passing 'volatile std::vector<unsigned int>' as 'this' argument of 'std::vector<_Tp, _Alloc>::iterator std::vector<_Tp, _Alloc>::begin() [with _Tp = unsigned int; _Alloc = std::allocator<unsigned int>; std::vector<_Tp, _Alloc>::iterator = __gnu_cxx::__normal_iterator<unsigned int*, std::vector<unsigned int> >; typename std::_Vector_base<_Tp, _Alloc>::pointer = unsigned int*]' discards qualifiers [-fpermissive]
+     for(const auto t : tArray) 
+                        ^
+ESP8266_Tacho:67:24: error: passing 'volatile std::vector<unsigned int>' as 'this' argument of 'std::vector<_Tp, _Alloc>::iterator std::vector<_Tp, _Alloc>::end() [with _Tp = unsigned int; _Alloc = std::allocator<unsigned int>; std::vector<_Tp, _Alloc>::iterator = __gnu_cxx::__normal_iterator<unsigned int*, std::vector<unsigned int> >; typename std::_Vector_base<_Tp, _Alloc>::pointer = unsigned int*]' discards qualifiers [-fpermissive]
+/home/chris/Arduino/ESP8266_Tacho/ESP8266_Tacho.ino: In function 'float calcRPM()':
+ESP8266_Tacho:75:47: error: passing 'volatile std::vector<unsigned int>' as 'this' argument of 'std::vector<_Tp, _Alloc>::size_type std::vector<_Tp, _Alloc>::size() const [with _Tp = unsigned int; _Alloc = std::allocator<unsigned int>; std::vector<_Tp, _Alloc>::size_type = unsigned int]' discards qualifiers [-fpermissive]
+     uint32_t nom = 60 * 1000000 * tArray.size();
+                                               ^
+/home/chris/Arduino/ESP8266_Tacho/ESP8266_Tacho.ino: In function 'void loop()':
+ESP8266_Tacho:87:7: error: 'rpm' was not declared in this scope
+       rpm = calcRPM();
+       ^
+exit status 1
+passing 'volatile std::vector<unsigned int>' as 'this' argument of 'void std::vector<_Tp, _Alloc>::reserve(std::vector<_Tp, _Alloc>::size_type) [with _Tp = unsigned int; _Alloc = std::allocator<unsigned int>; std::vector<_Tp, _Alloc>::size_type = unsigned int]' discards qualifiers [-fpermissive]
+
+This report would have more information with
+"Show verbose output during compilation"
+option enabled in File -> Preferences.
+
