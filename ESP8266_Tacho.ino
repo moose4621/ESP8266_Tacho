@@ -16,7 +16,8 @@ void setup()
   pinMode(RPMPin, INPUT_PULLUP);
   pinMode(PWMPin, OUTPUT);
   analogWriteFreq(3920);//set pwm freq of 3.92Khz for ESP8266
-
+  
+  lTimeUS = micros(); //init for the delta calc
   //Digital Pin RPM Set As An Interrupt
   attachInterrupt(RPMPin, fan_interrupt, FALLING);
 
@@ -29,16 +30,16 @@ void setup()
 //Capture The IR Break-Beam Interrupt
 ICACHE_RAM_ATTR void fan_interrupt()
 {
-  uint32_t curr = micros() ;
+  uint32_t curr = micros();
   dTimeUS = curr - lTimeUS;
   lTimeUS = curr;
   tAvail = true;
 }
 
 
-void pushTime() 
+bool pushTime() 
 {
-
+  
   uint32_t dTimeSafe;
   {
       using namespace esp8266;
@@ -62,6 +63,7 @@ void pushTime()
       //arr is not full, just append 
       tArray.push_back(dTimeSafe);
    } 
+   return tArray.size() == aSize; //allows waiting until the array is full
 } 
 
 uint32_t tArraySum() 
@@ -83,18 +85,27 @@ double calcRPM()
 //Main Loop To Calculate RPM
 void loop()
 {
+   // Serial.ptint('l');//debug,means loop
     if (tAvail)
     {
-      pushTime(); 
 
-      double rpm = calcRPM();
-      tAvail = false;
-      Serial.print("RPM = "); Serial.println(rpm);
+      Serial.print('t');//debug, means time
+        tAvail = false;
+        if (pushTime()) 
+        {
+            Serial.print('p');//debug, means push
+            double rpm = calcRPM();
+          
+
+            Serial.print("RPM = "); Serial.println(rpm);
+
       
-      //Do something with the new rpm val. 
-      //Depending on the frequency of the interrupts,
-      //you may want to limit this, e.g. do something only 
-      //once or twice per second
-      //showRPM();
+           //Do something with the new rpm val. 
+           //Depending on the frequency of the interrupts,
+           //you may want to limit this, e.g. do something only 
+           //once or twice per second
+           //showRPM();
+        } 
     } 
+    Serial.println();
 }
