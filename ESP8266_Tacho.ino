@@ -1,6 +1,6 @@
 #include <interrupts.h>;
 
-int PWMPin = 12;
+//int PWMPin = 12;
 int RPMPin = 14;
 
 volatile uint32_t dTimeUS; //measured delta time between interrupts
@@ -14,14 +14,14 @@ void setup()
   Serial.begin(115200);
 
   pinMode(RPMPin, INPUT_PULLUP);
-  pinMode(PWMPin, OUTPUT);
-  analogWriteFreq(3920);//set pwm freq of 3.92Khz for ESP8266
+ // pinMode(PWMPin, OUTPUT);
+ // analogWriteFreq(3920);//set pwm freq of 3.92Khz for ESP8266
   
   lTimeUS = micros(); //init for the delta calc
   //Digital Pin RPM Set As An Interrupt
   attachInterrupt(RPMPin, fan_interrupt, FALLING);
 
-  analogWrite(PWMPin, 100);// default is 0 - 1023
+ // analogWrite(PWMPin, 100);// default is 0 - 1023
 
   tArray.reserve(aSize);
 }
