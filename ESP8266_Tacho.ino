@@ -89,6 +89,8 @@ void loop()
 
       float rpm = calcRPM();
       tAvail = false;
+      Serial.print("RPM = "); Serial.println(rpm);
+      
       //Do something with the new rpm val. 
       //Depending on the frequency of the interrupts,
       //you may want to limit this, e.g. do something only 
