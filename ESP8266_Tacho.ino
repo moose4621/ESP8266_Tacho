@@ -72,12 +72,12 @@ uint32_t tArraySum()
     return sum;
 } 
 
-float calcRPM() 
+double calcRPM() 
 {
     //Last aSize Average RPM Counts Equals....
     uint32_t nom = 60 * 1000000 * tArray.size();
     uint32_t den = tArraySum() * 36;
-    return (float) nom / den;
+    return (double) nom / den;
 } 
 
 //Main Loop To Calculate RPM
@@ -87,7 +87,7 @@ void loop()
     {
       pushTime(); 
 
-      float rpm = calcRPM();
+      double rpm = calcRPM();
       tAvail = false;
       Serial.print("RPM = "); Serial.println(rpm);
       
